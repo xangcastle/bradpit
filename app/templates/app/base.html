@@ -17,6 +17,92 @@
             border-radius: 0px 30px 30px 0px;
             cursor:pointer;
           }
+
+          .tabs-left, .tabs-right {
+              border-bottom: none;
+              padding-top: 2px;
+            }
+            .tabs-left {
+              border-right: 1px solid #ddd;
+            }
+            .tabs-right {
+              border-left: 1px solid #ddd;
+            }
+            .tabs-left>li, .tabs-right>li {
+              float: none;
+              margin-bottom: 2px;
+            }
+            .tabs-left>li {
+              margin-right: -1px;
+            }
+            .tabs-right>li {
+              margin-left: -1px;
+            }
+            .tabs-left>li.active>a,
+            .tabs-left>li.active>a:hover,
+            .tabs-left>li.active>a:focus {
+              border-bottom-color: #ddd;
+              border-right-color: transparent;
+            }
+
+            .tabs-right>li.active>a,
+            .tabs-right>li.active>a:hover,
+            .tabs-right>li.active>a:focus {
+              border-bottom: 1px solid #ddd;
+              border-left-color: transparent;
+            }
+            .tabs-left>li>a {
+              border-radius: 4px 0 0 4px;
+              margin-right: 0;
+              display:block;
+            }
+            .tabs-right>li>a {
+              border-radius: 0 4px 4px 0;
+              margin-right: 0;
+            }
+            .vertical-text {
+              margin-top:50px;
+              border: none;
+              position: relative;
+            }
+            .vertical-text>li {
+              height: 20px;
+              width: 120px;
+              margin-bottom: 100px;
+            }
+            .vertical-text>li>a {
+              border-bottom: 1px solid #ddd;
+              border-right-color: transparent;
+              text-align: center;
+              border-radius: 4px 4px 0px 0px;
+            }
+            .vertical-text>li.active>a,
+            .vertical-text>li.active>a:hover,
+            .vertical-text>li.active>a:focus {
+              border-bottom-color: transparent;
+              border-right-color: #ddd;
+              border-left-color: #ddd;
+            }
+            .vertical-text.tabs-left {
+              left: -50px;
+            }
+            .vertical-text.tabs-right {
+              right: -50px;
+            }
+            .vertical-text.tabs-right>li {
+              -webkit-transform: rotate(90deg);
+              -moz-transform: rotate(90deg);
+              -ms-transform: rotate(90deg);
+              -o-transform: rotate(90deg);
+              transform: rotate(90deg);
+            }
+            .vertical-text.tabs-left>li {
+              -webkit-transform: rotate(-90deg);
+              -moz-transform: rotate(-90deg);
+              -ms-transform: rotate(-90deg);
+              -o-transform: rotate(-90deg);
+              transform: rotate(-90deg);
+            }
       </style>
     </head>
   <body>
@@ -138,8 +224,6 @@
                                            </br>
                                             <input type="text" class="form-control" placeholder="Identificación"/>
                                            </br>
-                                            <input type="text" class="form-control" placeholder="Identificación"/>
-                                           </br>
                                             <input type="text" class="form-control" placeholder="Telefono"/>
                                            </br>
                                             <input type="text" class="form-control" placeholder="Email"/>
@@ -156,7 +240,7 @@
                               <div class="panel-body">
                                 </br>
                                   <div class="col-xs-12">
-                                    <form role="form" role="actualizarUsuario" id="editar_usuario" method="post" action="editar_usuario" class="form-horizontal  form_entrada2"  >
+                                    <form role="form"    class="form-horizontal "  >
                                        <fieldset>
                                           <div class="row">
                                             <div class="form-group" >
@@ -390,13 +474,13 @@
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">Guardar</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      ....
+
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -504,5 +588,387 @@
                                   </div>
                               </div>
                   </div>
+<div class="menu-view-money" id="view-caja"  style="display:none" >
+        <div class="container" >
+              <div class="row ">
+               <span class="pull-right">
+                       <div class = "btn-group">
+                         <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_cierre'>Cierre de Caja</button>
+                         <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_analisis'>Analisis de caja</button>
+                         <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_acumulada'>Acumulado de caja</button>
+                      </div>
+                 </span >
+                 <span class="pull-left">
+                    <h1><span class="label label-default">Caja</span></h1>
+                 </span >
+              </div>
+              </br>
+
+              <div class="row ">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#impresion">Impresión de facturas</a></li>
+                    <li><a data-toggle="tab" href="#recibos">Recibos de caja</a></li>
+                    <li><a data-toggle="tab" href="#deposito">Depositos</a></li>
+                    <li><a data-toggle="tab" href="#chica">Caja chica</a></li>
+                  </ul>
+                </br>
+                </br>
+
+
+                  <div class="tab-content">
+                    <div id="impresion" class="tab-pane fade in active">
+                      <div class="row" style="min-height:100%;">
+                           <div  class="col-sm-12">
+                               <div class="col-xs-3">
+                                   <ul class="nav nav-tabs tabs-left">
+                                       <li class="active"><a href="#noImpresas" data-toggle="tab">No impresas</a></li>
+                                       <li><a href="#impresas" data-toggle="tab">Impresas</a></li>
+                                   </ul>
+                               </div>
+                               <div class="col-xs-9">
+                                   <!-- Tab panes -->
+                                   <div class="tab-content">
+                                       <div class="tab-pane active" id="noImpresas">
+                                         <div class="col-xs-12 col-sm-12 col-md-12" >
+                                           <div class="panel panel-default">
+                                             <div class="panel-heading">
+                                               <h4 class='panel-title'>Facturas no impresas</h4>
+                                             </div>
+                                             <div class="panel-body">
+
+                                             <div class="table-responsive">
+                                               <table class="table table-bordered table-hover">
+                                                 <thead>
+                                                       <tr>
+                                                         <th>Cliente</th>
+                                                         <th>Vendedor</th>
+                                                         <th>SubTotal</th>
+                                                         <th>Iva</th>
+                                                         <th>Total</th>
+                                                       </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                       <tr>
+                                                         <td>Cliente 1</td>
+                                                         <td>Vendedor 1</td>
+                                                         <td>456.02</td>
+                                                         <td>23.02</td>
+                                                         <td>503.02</td>
+                                                       </tr>
+                                                     </tbody>
+                                               </table>
+                                             </div>
+
+                                             </div>
+                                           </div>
+                                         </div>
+                                       </div>
+                                       <div class="tab-pane" id="impresas">
+                                           <div class="col-xs-12 col-sm-12 col-md-12" >
+                                             <div class="panel panel-default">
+                                               <div class="panel-heading">
+                                                 <h4 class='panel-title'>Facturas  impresas</h4>
+                                               </div>
+                                               <div class="panel-body">
+
+                                               <div class="table-responsive">
+                                                 <table class="table table-bordered table-hover">
+                                                   <thead>
+                                                         <tr>
+                                                           <th>Número</th>
+                                                           <th>Cliente</th>
+                                                           <th>SubTotal</th>
+                                                           <th>Iva</th>
+                                                           <th>Total</th>
+                                                         </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                         <tr>
+                                                           <td>20266</td>
+                                                           <td>Cliente 1</td>
+                                                           <td>456.02</td>
+                                                           <td>23.34</td>
+                                                           <td>503.01</td>
+                                                         </tr>
+                                                       </tbody>
+                                                 </table>
+                                               </div>
+
+                                               </div>
+                                             </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="clearfix"></div>
+                           </div>
+
+                          </div>
+
+
+
+                    </div>
+                    <div id="recibos" class="tab-pane fade">
+
+                      <div class="row" >
+                        <div class="col-xs-12 col-sm-4 col-md-4 " >
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class='panel-title'>Cliente</h4>
+                            </div>
+                            <div class="panel-body">
+                              </br>
+                                <div class="col-xs-12">
+
+                                         <div class="input-group">
+                                           <span class="input-group-btn">
+                                             <button class="btn btn-default" type="button">@</button>
+                                           </span>
+                                            <input type="text" class="form-control" placeholder="Nombre"/>
+                                         </div>
+                                         </br>
+                                          <input type="text" class="form-control" placeholder="Identificación"/>
+                                         </br>
+                                          <input type="text" class="form-control" placeholder="Telefono"/>
+                                         </br>
+                                          <input type="text" class="form-control" placeholder="Email"/>
+                                         </br>
+                                           <textarea class="form-control" rows="5" placeholder="Dirección"></textarea>
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class='panel-title'>Efectivo</h4>
+                            </div>
+                            <div class="panel-body">
+                              </br>
+                                <div class="col-xs-12">
+                                  <form role="form"    class="form-horizontal "  >
+                                     <fieldset>
+                                        <div class="row">
+                                          <div class="form-group" >
+                                             <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Cordobas </label>
+                                             <div class="col-xs-3  col-sm-3 col-md-3  col-lg-3">
+                                               <input  type="text" class="form-control"  >
+                                             </div>
+                                             <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Dolares </label>
+                                             <div class="col-xs-3  col-sm-3 col-md-3  col-lg-3">
+                                               <input  type="text" class="form-control"  >
+                                             </div>
+                                          </div>
+                                          <legend></legend>
+                                          <div class="form-group" >
+                                             <label  class="control-label col-xs-4  col-sm-4 col-md-4  col-lg-4">Pago con cheques</label>
+                                             <div class="col-xs-8  col-sm-8 col-md-8  col-lg-8">
+                                               <input  type="text" class="form-control"  >
+                                             </div>
+                                          </div>
+
+                                          <div class="form-group" >
+                                             <label  class="control-label col-xs-4  col-sm-4 col-md-4  col-lg-4">Pago con tarjeta</label>
+                                             <div class="col-xs-8  col-sm-8 col-md-8  col-lg-8">
+                                               <input  type="text" class="form-control"  >
+                                             </div>
+                                          </div>
+
+                                          <div class="form-group" >
+                                             <label  class="control-label col-xs-4  col-sm-4 col-md-4  col-lg-4">Transferencia Bancaria</label>
+                                             <div class="col-xs-8  col-sm-8 col-md-8  col-lg-8">
+                                               <input  type="text" class="form-control"  >
+                                             </div>
+                                          </div>
+                                      </div>
+                                   </fieldset>
+                                 </form>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8" >
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <div class = "btn-group ">
+                                <span class="">
+                                    <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_credito_caja'>Facturación de credito</button>
+                                    <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_imprimir_caja'>Imprimir</button>
+                                    <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_grabar_caja'>Grabar</button>
+                                </span>
+                             </div>
+                            </div>
+                            <div class="panel-body">
+
+                            </br>
+                            <div class="col-xs-12">
+                              <form role="form"    class="form-horizontal "  >
+                                 <fieldset>
+                                    <div class="row">
+
+                                      <div class="form-group" >
+                                         <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Monto total</label>
+                                         <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                           <input  type="text" class="form-control"  >
+                                         </div>
+                                      </div>
+
+                                      <div class="form-group" >
+                                         <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Monto en letras</label>
+                                         <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                           <input  type="text" class="form-control"  >
+                                         </div>
+                                      </div>
+
+                                      <div class="form-group" >
+                                         <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Concepto</label>
+                                         <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                            <textarea class="form-control" rows="5" placeholder="Concepto"></textarea>
+                                         </div>
+                                      </div>
+                                  </div>
+                               </fieldset>
+                             </form>
+                            </div>
+                          </br>
+                                <div class="col-xs-12 col-sm-6 col-md-6" >
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                      <h4 class='panel-title'>Facturas</h4>
+                                    </div>
+                                    <div class="panel-body">
+
+                                    <div class="table-responsive">
+                                      <table class="table table-bordered table-hover">
+                                        <thead>
+                                              <tr>
+                                                <th>Cantidad</th>
+                                                <th>Codigo</th>
+                                                <th>Descripción</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>1</td>
+                                                <td>0102</td>
+                                                <td>Producto 1</td>
+                                              </tr>
+                                            </tbody>
+                                      </table>
+                                    </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 " >
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                      <h4 class='panel-title'>Retenciones</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                      <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                          <thead>
+                                                <tr>
+                                                  <th>Cantidad</th>
+                                                  <th>Codigo</th>
+                                                  <th>Descripción</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>1</td>
+                                                  <td>0102</td>
+                                                  <td>Producto 1</td>
+                                                </tr>
+                                              </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="deposito" class="tab-pane fade">
+                      <h3>Deposito</h3>
+
+                    </div>
+                    <div id="chica" class="tab-pane fade">
+                      <h3>Caja chica</h3>
+                    </div>
+                  </div>
+              </div>
+              <div class="row" >
+
+              </div>
+        </div>
+                  <!-- Modal cierre-->
+                    <div class="modal fade" id="capa_modal_cierre" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cierre de caja</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            ....
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Guardar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Modal analisis-->
+                      <div class="modal fade" id="capa_modal_analisis" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Analisis</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              ....
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                              <button type="button" class="btn btn-primary">Guardar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Modal acumulada-->
+                        <div class="modal fade" id="capa_modal_acumulada" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Acumulada</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                ....
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary">Guardar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+        </div>
      </body>
 </html>
