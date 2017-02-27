@@ -1,10 +1,508 @@
 <html>
-  <head>
-    <link href="/static/bootstrap/css/bootstrap.min.css"></link>
-  <script src="/static/jquery/jquery-3.1.1.min.js"></script>
-  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-  </head>
+    <head>
+      <link   rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"></link>
+      <script type="text/javascript" src="/static/jquery/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/static/js/menu.js"></script>
+      <style>
+                /*SEARCH FORM*/
+          .search-form
+          {
+            border-radius: 30px 0px 0px 30px;
+          /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
+          }
+          /*to cange only one form and not all give unique class name like  class="search-form" */
+          .search-btn
+          {
+            border-radius: 0px 30px 30px 0px;
+            cursor:pointer;
+          }
+      </style>
+    </head>
   <body>
-    <div class="well">Test</div>
-  </body>
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-moneycash" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">MoneyCash</a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="header-moneycash">
+                <ul class="nav navbar-nav child_menu">
+                  <li  rel="view-ventas" id="_home" style="cursor:pointer"><a >Ventas </a></li>
+                  <li  rel="view-caja" style="cursor:pointer"><a >Caja</a></li>
+                  <li  rel="view-bodega" style="cursor:pointer"><a >Bodega</a></li>
+                  <li  rel="view-contabilidad" style="cursor:pointer"><a >Contabilidad</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moneda <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Cordobas</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Dolares</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+          <div class="menu-view-money" id="view-ventas"  style="display:none" >
+                  <div class="container" >
+                        <div class="row ">
+                         <span class="pull-right">
+                                 <div class = "btn-group">
+                                   <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_ventas'>Ventas Perdidas</button>
+                                   <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_facturar'>Facturar</button>
+                                   <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_proformar'>Proformar</button>
+                                   <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_guardar'>Guardar</button>
+                                   <button type = "button" class = "btn btn-info" data-toggle='modal' data-target='#capa_modal_buscar'>Buscar</button>
+                                </div>
+                           </span >
+                           <span class="pull-left">
+                              <h1><span class="label label-default">Facturación</span></h1>
+                           </span >
+                        </div>
+                        </br>
+                        <div class="row" >
+                          <div class="col-xs-12 col-sm-8 col-md-8" >
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class='panel-title'>Productos</h4>
+                              </div>
+                              <div class="panel-body">
+                                <div class="input-group">
+                                  <input type="text" class="form-control search-form" placeholder="Buscar Producto...">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary search-btn" type="button">Buscar</button>
+                                  </span>
+                                </div>
+                              </br>
+                              <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                  <thead>
+                                        <tr>
+                                          <th>Cantidad</th>
+                                          <th>Codigo</th>
+                                          <th>Descripción</th>
+                                          <th>Precio</th>
+                                          <th>Bodega</th>
+                                          <th>Costo</th>
+                                          <th>% Descuento</th>
+                                          <th>% Iva</th>
+                                          <th>Total</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>1</td>
+                                          <td>0102</td>
+                                          <td>Producto 1</td>
+                                          <td>6.74</td>
+                                          <td>Bodega 1</td>
+                                          <td>4.5</td>
+                                          <td>5</td>
+                                          <td>15</td>
+                                          <td>111</td>
+                                        </tr>
+                                      </tbody>
+                                </table>
+                              </div>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-xs-12 col-sm-4 col-md-4 " >
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class='panel-title'>Cliente</h4>
+                              </div>
+                              <div class="panel-body">
+                                </br>
+                                  <div class="col-xs-12">
+
+                                           <div class="input-group">
+                                             <span class="input-group-btn">
+                                               <button class="btn btn-default" type="button">@</button>
+                                             </span>
+                                              <input type="text" class="form-control" placeholder="Nombre"/>
+                                           </div>
+                                           </br>
+                                            <input type="text" class="form-control" placeholder="Identificación"/>
+                                           </br>
+                                            <input type="text" class="form-control" placeholder="Identificación"/>
+                                           </br>
+                                            <input type="text" class="form-control" placeholder="Telefono"/>
+                                           </br>
+                                            <input type="text" class="form-control" placeholder="Email"/>
+                                           </br>
+                                             <textarea class="form-control" rows="5" placeholder="Dirección"></textarea>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class='panel-title'>Totales</h4>
+                              </div>
+                              <div class="panel-body">
+                                </br>
+                                  <div class="col-xs-12">
+                                    <form role="form" role="actualizarUsuario" id="editar_usuario" method="post" action="editar_usuario" class="form-horizontal  form_entrada2"  >
+                                       <fieldset>
+                                          <div class="row">
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">SubTotal </label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <input  type="text" class="form-control"  >
+                                               </div>
+                                            </div>
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Descuento</label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <input  type="text" class="form-control"  >
+                                               </div>
+                                            </div>
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Iva</label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <div class="input-group">
+                                                   <input type="text" class="form-control" />
+                                                   <span class="input-group-btn">
+                                                     <button class="btn btn-default" type="button" data-toggle='modal' data-target='#capa_modal_exonerar'>Exonerar</button>
+                                                   </span>
+                                                 </div>
+                                               </div>
+                                            </div>
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Total</label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <input  type="text" class="form-control"  >
+                                               </div>
+                                            </div>
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Costo</label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <input  type="text" class="form-control"  >
+                                               </div>
+                                            </div>
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Utilidad</label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <input  type="text" class="form-control"  >
+                                               </div>
+                                            </div>
+                                            <div class="form-group" >
+                                               <label  class="control-label col-xs-3  col-sm-3 col-md-3  col-lg-3">Factor</label>
+                                               <div class="col-xs-9  col-sm-9 col-md-9  col-lg-9">
+                                                 <input  type="text" class="form-control"  >
+                                               </div>
+                                            </div>
+                                        </div>
+                                     </fieldset>
+                                   </form>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <!-- Modal ventas-->
+                        <div class="modal fade" id="capa_modal_ventas" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h3 class="modal-title">Grabar ventas perdidas</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body ng-scope">
+                                 <div class="row">
+                                   <div class="col-xs-4 text-right" >
+                                     <input type="text" class="form-control" placeholder="Producto"/>
+                                   </div>
+                                   <div class="col-xs-4 text-right" >
+                                     <input type="text" class="form-control" placeholder="Marca"/>
+                                   </div>
+                                   <div class="col-xs-4 text-right" >
+                                     <input type="text" class="form-control" placeholder="Cantidad"/>
+                                   </div>
+
+                                 </div>
+                               </br>
+                                 <div class="row">
+                                   <div class="col-xs-12 text-right" >
+                                     <select class="form-control" >
+                                         <option value="">Motivo</option>
+                                         <option value="Tiempo de entrega">Tiempo de entrega</option>
+                                         <option value="Precio muy alto">Precio muy alto</option>
+                                         <option value="Falta de inventario">Falta de inventario</option>
+                                     </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <center>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                  <button type="button" class="btn btn-primary">Guardar</button>
+                                </center>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Modal facturar-->
+                        <div class="modal fade" id="capa_modal_facturar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h3 class="modal-title">Facturar</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body ng-scope">
+
+                              </div>
+                              <div class="modal-footer">
+                                <center>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                  <button type="button" class="btn btn-primary">Guardar</button>
+                                </center>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                          <!-- Modal proformar-->
+                          <div class="modal fade" id="capa_modal_proformar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h3 class="modal-title">Proforma generada</h3>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body ng-scope">
+                                   <div class="row">
+                                     <div class="col-xs-4 text-right" >
+                                       <img src="/static/photo.jpg" class="img-responsive" alt="Logo">
+                                     </div>
+                                     <div class="col-xs-4 text-right" >
+                                         <center>
+                                           <label >Empresa S.A.</label>
+                                            </br>
+                                           <label >Proforma</label>
+                                        </center>
+                                     </div>
+                                     <div class="col-xs-4 text-left" >
+                                       <label ><b>Numero:</b></label>
+                                       <label ><b>0006</b></label>
+                                       <legend></legend>
+                                       <label ><b>Fecha:</b></label>
+                                       <label ><b>09-02-2017</b></label>
+                                     </div>
+                                   </div>
+                                 </br>
+                                   <div class="row">
+                                     <div class="col-xs-2 text-left" >
+                                       <b>Cliente</b>
+                                      <legend></legend>
+                                     </div>
+                                     <div class="col-xs-8 text-left" >
+                                         <center>
+                                           <label >Banco de la Procción S.A</label>
+                                            </br>
+                                           <label >Eduard Zeledon</label>
+                                           </br>
+                                          <label >Montoya lc al lago</label>
+                                        </center>
+                                     </div>
+                                  </div>
+                                <div class="row">
+                                  <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                      <thead>
+                                            <tr>
+                                              <th>Agader 1</th>
+                                              <th>Agader 2</th>
+                                              <th>Agader 3</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>text</td>
+                                              <td>text</td>
+                                              <td>text</td>
+                                            </tr>
+                                          </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-xs-12 text-center" style="height:100px; overflow-y: auto;" >
+                                     <p> This is a CMS block edited from admin panel.
+                                        You can insert any content here.
+
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui at sapien tempor gravida ut vel arcu. Maecenas odio arcu, feugiat vel congue feugiat, laoreet vitae diam.
+
+                                        Morbi consectetur nunc porta ligula tempor et varius nibh sollicitudin. Mauris risus felis, adipiscing eu consequat ac, aliquam vel urna. Nullam ac eros eros, et ullamcorper leo.
+
+                                        Donec porta enim sit amet augue iaculis eu sollicitudin ligula pharetra.
+                                        You can insert any content here.
+
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui at sapien tempor gravida ut vel arcu. Maecenas odio arcu, feugiat vel congue feugiat, laoreet vitae diam.
+
+                                        Morbi consectetur nunc porta ligula tempor et varius nibh sollicitudin. Mauris risus felis, adipiscing eu consequat ac, aliquam vel urna. Nullam ac eros eros, et ullamcorper leo.
+
+                                        Donec porta enim sit amet augue iaculis eu sollicitudin ligula pharetra.
+                                        You can insert any content here.
+
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui at sapien tempor gravida ut vel arcu. Maecenas odio arcu, feugiat vel congue feugiat, laoreet vitae diam.
+
+                                        Morbi consectetur nunc porta ligula tempor et varius nibh sollicitudin. Mauris risus felis, adipiscing eu consequat ac, aliquam vel urna. Nullam ac eros eros, et ullamcorper leo.
+
+                                        Donec porta enim sit amet augue iaculis eu sollicitudin ligula pharetra.
+                                     </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <center>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                  <button type="button" class="btn btn-primary">Imprimir</button>
+                                </center>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                            <!-- Modal guardar-->
+                              <div class="modal fade" id="capa_modal_guardar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      ....
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                      <button type="button" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Modal buscar-->
+                              <div class="modal fade" id="capa_modal_buscar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h3 class="modal-title">Escoja la plantilla a Cargar</h3>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body ng-scope">
+                                      <div class="row">
+                                        <div class="table-responsive">
+                                          <table class="table table-bordered table-hover">
+                                            <thead>
+                                                  <tr>
+                                                    <th>Fecha</th>
+                                                    <th>Cliente</th>
+                                                    <th>SubTotal</th>
+                                                    <th>Descuento</th>
+                                                    <th>Costo</th>
+                                                    <th>Utilidad</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td>text</td>
+                                                    <td>text</td>
+                                                    <td>text</td>
+                                                    <td>text</td>
+                                                    <td>text</td>
+                                                    <td>text</td>
+                                                  </tr>
+                                                </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Seleccionar</button>
+                                      </center>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Modal ventas-->
+                                <div class="modal fade" id="capa_modal_exonerar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h3 class="modal-title">Exoneración de impuestos</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body ng-scope">
+                                        <div class="row">
+                                          <div class="col-xs-8 text-left" >
+                                              <label >Porcentaje de exoneración % </label>
+                                          </div>
+                                          <div class="col-xs-4 text-right" >
+                                              <input  type="text" class="form-control"  >
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-xs-8 text-left" >
+                                              <label >Número de carta de exoneración </label>
+                                          </div>
+                                          <div class="col-xs-4 text-right" >
+                                              <input  type="text" class="form-control"  >
+                                          </div>
+                                        </div>
+                                      </br>
+                                         <div class="row">
+                                           <div class="input-group">
+                                               <input type="text" class="form-control" readonly>
+                                               <label class="input-group-btn">
+                                                   <span class="btn btn-primary">
+                                                       Examinar&hellip; <input type="file" style="display: none;" multiple>
+                                                   </span>
+                                               </label>
+                                           </div>
+                                         </div>
+
+                                      </div>
+                                      <div class="modal-footer">
+                                        <center>
+                                          <button type="button" class="btn btn-primary">OK</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        </center>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                  </div>
+     </body>
 </html>
