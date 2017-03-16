@@ -1,9 +1,11 @@
 from __future__ import unicode_literals
 from .base import Entidad
 from django.db import models
+from datetime import datetime
 
 
 MONEDAS = (("co", "C$ Cordobas"), ("do", "U$ Dolares"))
+TIPOS_PAGO = (("contado", "CONTADO"), ("credito", "CREDITO"))
 
 class TC(models.Model):
     fecha = models.DateField()
