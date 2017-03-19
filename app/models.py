@@ -10,8 +10,17 @@ TIPOS_PAGO = (("contado", "CONTADO"), ("credito", "CREDITO"))
 class TC(models.Model):
     fecha = models.DateField()
     oficial = models.FloatField()
-    venta = models.FloatField(null=True)
-    compra = models.FloatField(null=True)
+    venta = models.FloatField(null=True, blank=True)
+    compra = models.FloatField(null=True, blank=True)
+
+    def __unicode__(self):
+        return "%s/%s/%s - %s" % (str(self.fecha.year),
+                                  str(self.fecha.month),
+                                  str(self.fecha.day), str(self.oficial))
+
+    class Meta:
+        verbose_name = "cambio oficial"
+        verbose_name_plural = "tasas de cambio"
 
 def dolarizar(cordobas=1, fecha=datetime.now(), digitos=2):
     tc = TC.objects.get(fecha__year=fecha.year, fecha__month=fecha.month,
@@ -205,5 +214,4 @@ class Factura(models.Model):
     dec_ir = models.BooleanField(default=False)
     dec_al = models.BooleanField(default=False)
     dec_iva = models.BooleanField(default=False)
-
 
